@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:mv="http://it.strazz.faces/mars">
+
+<f:view contentType="text/html" encoding="UTF-8">
+	<h:head>
+		<title>MarsRover</title>
+	</h:head>
+
+	<h:body>
+		<h:form>
+			<p:growl autoUpdate="true" />
+			<p:layout fullPage="true">
+				<p:layoutUnit position="north" size="40">
+					Primefaces Code Kata 0.1
+				</p:layoutUnit>
+				<p:layoutUnit position="west" size="500" resizable="true">
+						<mv:marsRover 
+							id="grid" 
+							value="#{marsRoverBean.model}"
+							rendered="true" />
+				</p:layoutUnit>
+				<p:layoutUnit position="center">
+					<p:outputPanel layout="block" id="opnData">
+						<p:panel header="new MarsRover">
+							<p:outputPanel layout="block" id="opnAddMarsRover">
+								<p:panelGrid columns="3">
+									<p:outputLabel value="X Size" for="roverXSize" />
+									<p:outputLabel value="Y Size" for="roverYSize" />
+									<h:outputText />
+									<p:inputText id="roverXSize" required="true" size="5"
+										requiredMessage="x size required to create a new MarsRover"
+										value="#{marsRoverBean.xSize}" converter="javax.faces.Integer">
+										<f:validateLongRange minimum="0" />
+									</p:inputText>
+									<p:inputText id="roverYSize" required="true" size="5"
+										requiredMessage="y size required to create a new MarsRover"
+										value="#{marsRoverBean.ySize}" converter="javax.faces.Integer">
+										<f:validateLongRange minimum="0" />
+									</p:inputText>
+									<p:commandButton icon="ui-icon-plus"
+										action="#{marsRoverBean.newModel}" process="opnAddMarsRover"
+										update="opnData grid" />
+								</p:panelGrid>
+							</p:outputPanel>
+						</p:panel>
+						<p:panel header="Add Rover">
+							<p:outputPanel layout="block" id="opnAddRover">
+								<p:panelGrid columns="4">
+									<p:outputLabel value="X Position" for="roverXPosition" />
+									<p:outputLabel value="Y Position" for="roverYPosition" />
+									<p:outputLabel value="Direction" for="roverDirection" />
+									<h:outputText />
+									<p:inputText id="roverXPosition" required="true" size="5"
+										requiredMessage="x coordinate required to add a new Rover"
+										validator="#{marsRoverBean.validateXRoverPosition}"
+										value="#{marsRoverBean.xRoverPosition}"
+										converter="javax.faces.Integer">
+									</p:inputText>
+									<p:inputText id="roverYPosition" required="true" size="5"
+										requiredMessage="y coordinate required to add a new Rover"
+										validator="#{marsRoverBean.validateYRoverPosition}"
+										value="#{marsRoverBean.yRoverPosition}"
+										converter="javax.faces.Integer">
+									</p:inputText>
+									<p:selectOneMenu id="roverDirection"
+										style="vertical-align: middle"
+										value="#{marsRoverBean.roverDirection}"
+										converter="#{marsRoverBean.directionConverter}">
+										<f:selectItems value="#{marsRoverBean.directions}" />
+									</p:selectOneMenu>
+									<p:commandButton icon="ui-icon-plus"
+										disabled="#{marsRoverBean.model == null}"
+										action="#{marsRoverBean.addRover}" process="opnAddRover"
+										update="opnData grid" />
+								</p:panelGrid>
+							</p:outputPanel>
+						</p:panel>
+						<p:panel header="Move Rover">
+							<p:outputPanel layout="block" id="opnMoveRover">
+								<p:panelGrid columns="4" style="text-align:center;">
+									<p:outputLabel value="Move Command" for="moveCommand" />
+									<h:outputText value="L Command" />
+									<h:outputText value="M Command" />
+									<h:outputText value="R Command" />
+									<h:panelGroup>
+										<p:inputText id="moveCommand"
+											requiredMessage="Command data is required" required="true"
+											value="#{marsRoverBean.command}" />
+										<p:commandButton icon="ui-icon-play"
+											disabled="#{empty marsRoverBean.model.rovers}"
+											action="#{marsRoverBean.sendCommand}" process="opnMoveRover"
+											update="opnData grid" />
+									</h:panelGroup>
+									<p:commandButton icon="ui-icon-circle-triangle-w"
+										disabled="#{empty marsRoverBean.model.rovers}"
+										action="#{marsRoverBean.sendCommand}" process="@this"
+										update="opnData grid">
+										<f:setPropertyActionListener target="#{marsRoverBean.command}"
+											value="L" />
+									</p:commandButton>
+									<p:commandButton icon="ui-icon-circle-triangle-n"
+										disabled="#{empty marsRoverBean.model.rovers}"
+										action="#{marsRoverBean.sendCommand}" process="@this"
+										update="opnData grid">
+										<f:setPropertyActionListener target="#{marsRoverBean.command}"
+											value="M" />
+									</p:commandButton>
+									<p:commandButton icon="ui-icon-circle-triangle-e"
+										disabled="#{empty marsRoverBean.model.rovers}"
+										action="#{marsRoverBean.sendCommand}" process="@this"
+										update="opnData grid">
+										<f:setPropertyActionListener target="#{marsRoverBean.command}"
+											value="R" />
+									</p:commandButton>
+								</p:panelGrid>
+							</p:outputPanel>
+						</p:panel>
+						<p:panel header="Current Positions">
+							<p:dataTable value="#{marsRoverBean.model.rovers}"
+								emptyMessage="No Rovers yet!!" var="rover" rowIndexVar="i">
+								<p:column headerText="Rover n°">
+									<h:outputText value="#{i}" />
+								</p:column>
+								<p:column headerText="X Position">
+									<h:outputText value="#{rover.x}" />
+								</p:column>
+								<p:column headerText="Y Position">
+									<h:outputText value="#{rover.y}" />
+								</p:column>
+								<p:column headerText="Direction">
+									<h:outputText value="#{rover.direction}" />
+								</p:column>
+							</p:dataTable>
+						</p:panel>
+					</p:outputPanel>
+				</p:layoutUnit>
+			</p:layout>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

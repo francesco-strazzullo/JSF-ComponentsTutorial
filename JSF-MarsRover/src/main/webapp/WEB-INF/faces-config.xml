@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+    version="2.1">
+	<component>
+		<description></description>
+		<display-name>marsRover</display-name>
+		<component-type>it.strazz.marsrover.MarsRover</component-type>
+		<component-class>it.strazz.components.marsrover.MarsRover</component-class>
+	</component>
+	<render-kit>
+		<renderer>
+			<component-family>it.strazz.marsrover.Output</component-family>
+			<renderer-type>it.strazz.marsrover.MarsRoverRenderer</renderer-type>
+			<renderer-class>it.strazz.components.marsrover.MarsRoverRenderer</renderer-class>
+		</renderer>
+	</render-kit>
+
+</faces-config>
