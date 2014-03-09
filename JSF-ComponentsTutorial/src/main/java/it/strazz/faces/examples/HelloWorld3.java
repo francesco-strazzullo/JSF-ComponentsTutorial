@@ -23,7 +23,7 @@ public class HelloWorld3 extends UIComponentBase{
 	}
 	
 	@Override
-	public void encodeBegin(FacesContext context) throws IOException {
+	public void encodeEnd(FacesContext context) throws IOException {
 		context.getResponseWriter().write("<div id='" + this.getClientId() + " onclick='exampleFunction();' class='hello'>Hello " + getName() + "! (with resources)</div>");
 	}
 	

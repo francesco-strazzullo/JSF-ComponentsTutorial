@@ -12,7 +12,7 @@ public class HelloWorld4Renderer extends Renderer {
 	
 	public static final String RENDERER_TYPE = "it.strazz.faces.HelloWorld4Renderer";
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		HelloWorld4 helloWorld4 = (HelloWorld4) component;
 		context.getResponseWriter().write("<div id='" + helloWorld4.getClientId() + " onclick='exampleFunction();' class='hello'>Hello " + helloWorld4.getName() + "! (with renderer)</div>");
 	}

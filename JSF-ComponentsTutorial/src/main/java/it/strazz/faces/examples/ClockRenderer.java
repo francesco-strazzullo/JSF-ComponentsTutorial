@@ -12,7 +12,7 @@ public class ClockRenderer extends Renderer {
 	
 	public static final String RENDERER_TYPE = "it.strazz.faces.ClockRenderer";
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		
 		Clock clock = (Clock) component;
 		
