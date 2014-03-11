@@ -14,7 +14,10 @@ public class HelloWorld4Renderer extends Renderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		HelloWorld4 helloWorld4 = (HelloWorld4) component;
-		context.getResponseWriter().write("<div id='" + helloWorld4.getClientId() + " onclick='exampleFunction();' class='hello'>Hello " + helloWorld4.getName() + "! (with renderer)</div>");
+		context.getResponseWriter().write(
+				"<div  id=\"" + helloWorld4.getClientId() + 
+					"\" onclick=\"exampleFunction('" + helloWorld4.getName() + "');\" class=\"hello\">Hello " + helloWorld4.getName() + 
+					"! (with renderer)</div>");
 	}
 	
 }

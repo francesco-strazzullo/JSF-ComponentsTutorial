@@ -1,3 +1,3 @@
-var exampleFunction = function(){
-	alert('you clicked me!');
+function exampleFunction(who){
+	alert('say hello to ' + who);
 }

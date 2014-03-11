@@ -22,9 +22,11 @@ public class HelloWorld3 extends UIComponentBase{
 		return COMPONENT_FAMILY;
 	}
 	
-	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
-		context.getResponseWriter().write("<div id='" + this.getClientId() + " onclick='exampleFunction();' class='hello'>Hello " + getName() + "! (with resources)</div>");
+		context.getResponseWriter().write(
+				"<div  id=\"" + this.getClientId() + 
+					"\" onclick=\"exampleFunction('" + getName() + "');\" class=\"hello\">Hello " + getName() + 
+					"! (with resources)</div>");
 	}
 	
 	public String getName(){

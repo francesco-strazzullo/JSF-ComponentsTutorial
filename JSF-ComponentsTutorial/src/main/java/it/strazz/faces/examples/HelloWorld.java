@@ -16,8 +16,7 @@ public class HelloWorld extends UIComponentBase{
 		return COMPONENT_FAMILY;
 	}
 	
-	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
-		context.getResponseWriter().write("<div id='" + this.getClientId() + "'>Hello World!</div>");
+		context.getResponseWriter().write("<div id=\"" + this.getClientId() + "\">Hello World!</div>");
 	}
 }

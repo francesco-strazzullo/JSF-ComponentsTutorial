@@ -17,10 +17,10 @@ public class ClockRenderer extends Renderer {
 		Clock clock = (Clock) component;
 		
 		if(clock.isDigital()){
-			context.getResponseWriter().write("<div id='" + component.getClientId() + "'></div>");
+			context.getResponseWriter().write("<div id=\"" + component.getClientId() + "\"></div>");
 			context.getResponseWriter().write("<script>document.getElementById('" + component.getClientId() + "').innerHTML = (new Date()).toString();setInterval(function(){document.getElementById('" + component.getClientId() + "').innerHTML = (new Date()).toString();},1000);</script>");
 		}else{
-			context.getResponseWriter().write("<canvas id='" + component.getClientId() + "' class='CoolClock'></canvas>");
+			context.getResponseWriter().write("<canvas id=\"" + component.getClientId() + "\" class=\"CoolClock\"></canvas>");
 			context.getResponseWriter().write("<script>CoolClock.findAndCreateClocks();</script>");
 		}
 		

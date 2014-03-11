@@ -18,12 +18,12 @@
 
 	<dependencies>
 	
-		<!-- PrimeFaces  -->
+		<!-- PrimeFaces  
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>4.0</version>
-		</dependency>
+		</dependency>-->
 		
 		<!-- JSF -->
 		<dependency>
