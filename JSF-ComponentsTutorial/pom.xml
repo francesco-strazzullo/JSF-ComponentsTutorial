@@ -7,24 +7,9 @@
 	<version>0.1-SNAPSHOT</version>
 	<name>primefaces Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
-	<repositories>
-		<repository>
-			<id>prime-repo</id>
-			<name>Prime Repo</name>
-			<url>http://repository.primefaces.org</url>
-		</repository>
-	</repositories>
-
+	
 	<dependencies>
 	
-		<!-- PrimeFaces  
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>4.0</version>
-		</dependency>-->
-		
 		<!-- JSF -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
